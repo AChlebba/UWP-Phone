@@ -26,13 +26,13 @@
                                                          >
             <ListView.ItemTemplate>
                 <DataTemplate                            >
-                    <StackPanel x:ConnectionId='8' Orientation="Horizontal" Margin="10,5,0,5">
+                    <StackPanel x:ConnectionId='10' Orientation="Horizontal" Margin="10,5,0,5">
                         <Ellipse Width="45" Height="45">
                             <Ellipse.Fill>
-                                <ImageBrush x:ConnectionId='10'                                        />
+                                <ImageBrush x:ConnectionId='12'                                        />
                             </Ellipse.Fill>
                         </Ellipse>
-                        <TextBlock x:ConnectionId='9'                      
+                        <TextBlock x:ConnectionId='11'                      
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"
                                    FontSize="15"/>
@@ -61,15 +61,15 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image x:ConnectionId='5' Name="DetailImage"  
+                <Image x:ConnectionId='7' Name="DetailImage"  
                        Grid.Column="0" 
                        Grid.RowSpan="2" 
                        VerticalAlignment="Top"/>
-                <TextBlock x:ConnectionId='6' Name="DetailNameTextBlock" 
+                <TextBlock x:ConnectionId='8' Name="DetailNameTextBlock" 
                            FontSize="32" 
                            Grid.Column="1" 
                            Margin="10,0,0,0"/>
-                <TextBlock x:ConnectionId='7' Name="DetailDescriptionTextBlock" 
+                <TextBlock x:ConnectionId='9' Name="DetailDescriptionTextBlock" 
                            Grid.Row="1" 
                            Grid.Column="1" 
                            TextWrapping="Wrap"
@@ -77,6 +77,19 @@
                 
 
             </Grid>
+            
+            <!-- List of Comics-->
+            <GridView x:ConnectionId='5' Grid.Row="1" 
+                                                          
+                      IsItemClickEnabled="True" 
+                                                    >
+                <GridView.ItemTemplate>
+                    <DataTemplate                            >
+                        <Image x:ConnectionId='6'                                   Width="100" Height="150" />
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+            
         </Grid>
 
         <TextBlock Text="Data provided by Marvel. © 2016 Marvel" 
