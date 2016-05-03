@@ -166,7 +166,7 @@ namespace HeroExplorer.HeroExplorer_XamlTypeInfo
             _typeNameTable[30] = "System.Collections.Generic.List`1<HeroExplorer.Models.Image>";
             _typeNameTable[31] = "HeroExplorer.Models.Image";
             _typeNameTable[32] = "HeroExplorer.Models.Creators";
-            _typeNameTable[33] = "HeroExplorer.Models.Characters";
+            _typeNameTable[33] = "HeroExplorer.Models.ComicCharacters";
 
             _typeTable = new global::System.Type[34];
             _typeTable[0] = typeof(global::HeroExplorer.MainPage);
@@ -202,7 +202,7 @@ namespace HeroExplorer.HeroExplorer_XamlTypeInfo
             _typeTable[30] = typeof(global::System.Collections.Generic.List<global::HeroExplorer.Models.Image>);
             _typeTable[31] = typeof(global::HeroExplorer.Models.Image);
             _typeTable[32] = typeof(global::HeroExplorer.Models.Creators);
-            _typeTable[33] = typeof(global::HeroExplorer.Models.Characters);
+            _typeTable[33] = typeof(global::HeroExplorer.Models.ComicCharacters);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -264,7 +264,7 @@ namespace HeroExplorer.HeroExplorer_XamlTypeInfo
         private object Activate_30_List() { return new global::System.Collections.Generic.List<global::HeroExplorer.Models.Image>(); }
         private object Activate_31_Image() { return new global::HeroExplorer.Models.Image(); }
         private object Activate_32_Creators() { return new global::HeroExplorer.Models.Creators(); }
-        private object Activate_33_Characters() { return new global::HeroExplorer.Models.Characters(); }
+        private object Activate_33_ComicCharacters() { return new global::HeroExplorer.Models.ComicCharacters(); }
         private void VectorAdd_3_ObservableCollection(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::HeroExplorer.Models.Character>)instance;
@@ -610,7 +610,7 @@ namespace HeroExplorer.HeroExplorer_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 33:   //  HeroExplorer.Models.Characters
+            case 33:   //  HeroExplorer.Models.ComicCharacters
                 userType = new global::HeroExplorer.HeroExplorer_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
@@ -1149,7 +1149,7 @@ namespace HeroExplorer.HeroExplorer_XamlTypeInfo
         private void set_52_ComicBook_characters(object instance, object Value)
         {
             var that = (global::HeroExplorer.Models.ComicBook)instance;
-            that.characters = (global::HeroExplorer.Models.Characters)Value;
+            that.characters = (global::HeroExplorer.Models.ComicCharacters)Value;
         }
         private object get_53_ComicBook_stories(object instance)
         {
@@ -1493,7 +1493,7 @@ namespace HeroExplorer.HeroExplorer_XamlTypeInfo
                 break;
             case "HeroExplorer.Models.ComicBook.characters":
                 userType = (global::HeroExplorer.HeroExplorer_XamlTypeInfo.XamlUserType)GetXamlTypeByName("HeroExplorer.Models.ComicBook");
-                xamlMember = new global::HeroExplorer.HeroExplorer_XamlTypeInfo.XamlMember(this, "characters", "HeroExplorer.Models.Characters");
+                xamlMember = new global::HeroExplorer.HeroExplorer_XamlTypeInfo.XamlMember(this, "characters", "HeroExplorer.Models.ComicCharacters");
                 xamlMember.Getter = get_52_ComicBook_characters;
                 xamlMember.Setter = set_52_ComicBook_characters;
                 break;

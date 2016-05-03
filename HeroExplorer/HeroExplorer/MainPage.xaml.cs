@@ -1,5 +1,6 @@
 ﻿using HeroExplorer.Models;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -76,9 +77,28 @@ namespace HeroExplorer
             MyProgressRing.Visibility = Visibility.Collapsed;
         }
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void GridView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            var selectedComic = (ComicBook)e.ClickedItem;
 
+            try
+            {
+
+                var ComicUrl = selectedComic.urls[1].url;
+
+                string uriToLaunch = @ComicUrl;
+
+                var uri = new Uri(uriToLaunch);
+
+                var success = await Windows.System.Launcher.LaunchUriAsync(uri);
+            }
+
+            catch (Exception)
+            {
+                return;
+            }
         }
+
     }
+    
 }

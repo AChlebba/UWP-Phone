@@ -39,7 +39,7 @@ namespace HeroExplorer.Models
         public string extension { get; set; }
     }
 
-    public class Item
+    public class Creator
     {
         public string resourceURI { get; set; }
         public string name { get; set; }
@@ -50,21 +50,21 @@ namespace HeroExplorer.Models
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public List<Item> items { get; set; }
+        public List<Creator> items { get; set; }
         public int returned { get; set; }
     }
 
-    public class Item2
+    public class ComicCharacter
     {
         public string resourceURI { get; set; }
         public string name { get; set; }
     }
 
-    public class Characters
+    public class ComicCharacters
     {
         public int available { get; set; }
         public string collectionURI { get; set; }
-        public List<Item2> items { get; set; }
+        public List<ComicCharacter> items { get; set; }
         public int returned { get; set; }
     }
 
@@ -97,7 +97,7 @@ namespace HeroExplorer.Models
         public Thumbnail thumbnail { get; set; }
         public List<Image> images { get; set; }
         public Creators creators { get; set; }
-        public Characters characters { get; set; }
+        public ComicCharacters characters { get; set; }
         public Stories stories { get; set; }
         public Events events { get; set; }
     }
