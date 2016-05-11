@@ -348,8 +348,9 @@
     <AppxPackagedFile Include="C:\Users\Ja\Documents\Visual Studio 2015\Projects\HeroExplorer\HeroExplorer\ApplicationInsights.config">
       <PackagePath>ApplicationInsights.config</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ja\Documents\Visual Studio 2015\Projects\HeroExplorer\HeroExplorer\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Ja\Documents\Visual Studio 2015\Projects\HeroExplorer\HeroExplorer\Assets\SplashScreen.scale-400.png">
+      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ja\Documents\Visual Studio 2015\Projects\HeroExplorer\HeroExplorer\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -377,6 +378,9 @@
     <AppxPackagedFile Include="C:\Users\Ja\Documents\Visual Studio 2015\Projects\HeroExplorer\HeroExplorer\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ja\Documents\Visual Studio 2015\Projects\HeroExplorer\HeroExplorer\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ja\Documents\Visual Studio 2015\Projects\HeroExplorer\HeroExplorer\bin\x86\Debug\HeroExplorer.xr.xml">
       <PackagePath>HeroExplorer.xr.xml</PackagePath>

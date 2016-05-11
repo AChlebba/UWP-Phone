@@ -91,6 +91,78 @@ namespace HeroExplorer
             }
         }
 
+        public static async Task FindMarvelCharactersAsync(ObservableCollection<Character> marvelCharacters, string searchedCharacter)
+        {
+            try
+            {
+                var characterDataWrapper = await GetSearchedCharacterDataWrapperAsync(searchedCharacter);
+
+                var characters = characterDataWrapper.data.results;
+
+                foreach (var character in characters)
+                {
+                    // Filter characters that are missing thumbnail images
+
+                    if (character.thumbnail != null
+                        && character.thumbnail.path != ""
+                        && character.thumbnail.path != ImageNotAvailablePath)
+                    {
+
+                        character.thumbnail.small = String.Format("{0}/standard_small.{1}",
+                            character.thumbnail.path,
+                            character.thumbnail.extension);
+
+                        character.thumbnail.large = String.Format("{0}/portrait_xlarge.{1}",
+                            character.thumbnail.path,
+                            character.thumbnail.extension);
+
+                        marvelCharacters.Add(character);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        public static async Task FindMarvelEventsAsync(ObservableCollection<ComicEvent> marvelEvents, int characterId)
+        {
+            try
+            {
+                var eventDataWrapper = await GetSearchedEventsDataWrapperAsync(characterId);
+
+                var events = eventDataWrapper.data.results;
+
+                foreach (var ComicEvent in events)
+                {
+                    // Filter characters that are missing thumbnail images
+
+                    if (ComicEvent.thumbnail != null
+                        && ComicEvent.thumbnail.path != ""
+                        && ComicEvent.thumbnail.path != ImageNotAvailablePath)
+                    {
+
+                        ComicEvent.thumbnail.small = String.Format("{0}/standard_small.{1}",
+                            ComicEvent.thumbnail.path,
+                            ComicEvent.thumbnail.extension);
+
+                        ComicEvent.thumbnail.large = String.Format("{0}/portrait_xlarge.{1}",
+                            ComicEvent.thumbnail.path,
+                            ComicEvent.thumbnail.extension);
+
+                        marvelEvents.Add(ComicEvent);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+        
+        /// FUNKCJE TWORZACE URL I DE/SERIALIZUJACE///////////////////////////////////////////////////////////////////////////////////////
+        
         private static async Task<CharacterDataWrapper> GetCharacterDataWrapperAsync()
         {
             // Assemble the URL
@@ -99,6 +171,22 @@ namespace HeroExplorer
 
             string url = String.Format("http://gateway.marvel.com:80/v1/public/characters?limit=10&offset={0}",
                 offset);
+
+            var jsonMessage = await CallMarvelAsync(url);
+
+            // Response -> string / json -> deserialize
+            var serializer = new DataContractJsonSerializer(typeof(CharacterDataWrapper));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonMessage));
+
+            var result = (CharacterDataWrapper)serializer.ReadObject(ms);
+            return result;
+        }
+
+        private static async Task<CharacterDataWrapper> GetSearchedCharacterDataWrapperAsync(string searchedCharacter)
+        {
+        
+            string url = String.Format("http://gateway.marvel.com:80/v1/public/characters?name={0}&limit=1",
+                searchedCharacter);
 
             var jsonMessage = await CallMarvelAsync(url);
 
@@ -125,6 +213,24 @@ namespace HeroExplorer
             return result;
         }
 
+       
+        private static async Task<EventDataWrapper> GetSearchedEventsDataWrapperAsync(int characterId)
+        {
+            var url = String.Format("http://gateway.marvel.com:80/v1/public/events?characters={0}&limit=10",
+                characterId);
+
+            var jsonMessage = await CallMarvelAsync(url);
+
+            // Response -> string / json -> deserialize
+            var serializer = new DataContractJsonSerializer(typeof(EventDataWrapper));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonMessage));
+
+            var result = (EventDataWrapper)serializer.ReadObject(ms);
+            return result;
+        }
+
+        /// DOKONCZENIE URL I ZAPYTANIE DO API//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         private async static Task<string> CallMarvelAsync(string url)
         {
             // Get the MD5 Hash
@@ -139,6 +245,9 @@ namespace HeroExplorer
             return await response.Content.ReadAsStringAsync();
         }
 
+
+        /// TWORZENIE HASZU I SZYFROWANIE///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+        
         private static string CreateHash(string timeStamp)
         {
 
@@ -146,7 +255,7 @@ namespace HeroExplorer
             var hashedMessage = ComputeMD5(toBeHashed);
             return hashedMessage;
         }
-
+        
         // From:
         // http://stackoverflow.com/questions/8299142/how-to-generate-md5-hash-code-for-my-winrt-app-using-c
         private static string ComputeMD5(string str)
@@ -157,8 +266,5 @@ namespace HeroExplorer
             var res = CryptographicBuffer.EncodeToHexString(hashed);
             return res;
         }
-
-
-
     }
 }
